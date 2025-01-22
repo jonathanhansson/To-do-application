@@ -9,24 +9,34 @@ class ToDoApp:
             self.root = root
             self.root.title("Checkpoints")
 
-            self.name_entry = tk.Entry(self.root)  # Skapa textfält
-            self.name_entry.pack()  # Lägg till i GUI
+            # Skapa etiketter och textfält med grid
+            self.name_label = tk.Label(self.root, text="Enter task: ")
+            self.name_label.grid(row=0, column=0, padx=5, pady=5, sticky="e")
 
-            self.description_entry = tk.Entry(self.root)  # Skapa textfält
-            self.description_entry.pack()
+            self.name_entry = tk.Entry(self.root)
+            self.name_entry.grid(row=0, column=1, padx=5, pady=5, sticky="w")
 
-            self.date_entry = tk.Entry(self.root)  # Skapa textfält
-            self.date_entry.pack()
+            self.description_label = tk.Label(self.root, text="Enter description: ")
+            self.description_label.grid(row=1, column=0, padx=5, pady=5, sticky="e")
 
-            # Skapa GUI-element
+            self.description_entry = tk.Entry(self.root)
+            self.description_entry.grid(row=1, column=1, padx=5, pady=5, sticky="w")
+
+            self.date_label = tk.Label(self.root, text="Enter deadline: ")
+            self.date_label.grid(row=2, column=0, padx=5, pady=5, sticky="e")
+
+            self.date_entry = tk.Entry(self.root)
+            self.date_entry.grid(row=2, column=1, padx=5, pady=5, sticky="w")
+
+            # Lista och knappar
             self.task_listbox = tk.Listbox(self.root, width=100, height=15)
-            self.task_listbox.pack(padx=10, pady=10)
+            self.task_listbox.grid(row=3, column=0, columnspan=2, padx=10, pady=10)
 
             self.add_button = tk.Button(self.root, text="Add Task", command=self.add_task)
-            self.add_button.pack(pady=5)
+            self.add_button.grid(row=4, column=0, padx=10, pady=5)
 
             self.mark_done_button = tk.Button(self.root, text="Mark as Done", command=self.mark_task_done)
-            self.mark_done_button.pack(pady=5)
+            self.mark_done_button.grid(row=4, column=1, padx=10, pady=5)
 
             self.refresh_task_list()
 
