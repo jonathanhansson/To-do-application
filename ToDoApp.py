@@ -2,6 +2,7 @@
 import tkinter as tk
 from tkinter import Toplevel, messagebox
 from tasks import *
+from todolist import *
 
 class ToDoApp:
         def __init__(self, root, todolist):
@@ -72,6 +73,8 @@ class ToDoApp:
             deadline_entry = tk.Entry(new_task_window, width=30)
             deadline_entry.grid(row=2, column=1, padx=5, pady=5)
 
+
+
             new_task_window.bind('<Return>', lambda event: self.add_task(task_entry, desc_entry, deadline_entry, new_task_window))
 
             # Förändring: Använd lambda för att skicka textrutor till add_task-metoden
@@ -106,17 +109,12 @@ class ToDoApp:
                 messagebox.showwarning("Selection Error", "No task selected.")
 
         def remove_task(self):
-            # Hämta valt index
             selected_index = self.task_listbox.curselection()
-            if selected_index:  # Kontrollera om något är valt
+            if selected_index:
                 index = selected_index[0]
-
-                # Ta bort från listan i Listbox
                 self.task_listbox.delete(index)
-
-                # Ta bort från listan i data (om du har en separat lista för tasks)
-                if index < len(self.tasks):  # Om du lagrar tasks i en separat lista
-                    del self.tasks[index]
+                del self.todolist.tasks[index]  # Ta bort från self.todolist.tasks
+                self.refresh_task_list()
             else:
                 messagebox.showwarning("Selection Error", "No task selected.")
 
