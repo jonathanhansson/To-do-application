@@ -5,7 +5,6 @@ from tasks import *
 from todolist import *
 from ToDoApp import *
 
-
 # Skapa ToDoList- och Tkinter-root
 root = tk.Tk()
 my_todolist = ToDoList()
